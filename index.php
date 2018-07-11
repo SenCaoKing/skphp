@@ -21,6 +21,7 @@ if(DEBUG){
 include CORE.'/common/function.php';
 // p(SKPHP);
 include CORE.'/sk.php';
+\core\sk::run();
 
 // 将函数注册到SPL __autoload函数队列中
 //spl_autoload_register(function ($class_name) {
@@ -29,5 +30,5 @@ include CORE.'/sk.php';
 
 include CORE.'/autoload.php';
 spl_autoload_register('\core\autoload::load');
+$route = new \core\route();
 
-\core\sk::run();
