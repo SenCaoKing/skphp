@@ -9,6 +9,7 @@
 define('SKPHP',realpath('./')); // 获取项目所在根目录
 define('CORE',SKPHP.'/core'); // 核心文件所在目录
 define('APP',SKPHP.'./app'); // 应用文件目录
+define('LIB',SKPHP.'/lib'); // 第三方库所在目录
 
 define('DEBUG',true); // 是否开启调试
 
@@ -20,8 +21,8 @@ if(DEBUG){
 
 include CORE.'/common/function.php';
 // p(SKPHP);
-include CORE.'/sk.php';
-\core\sk::run();
+// include CORE.'/sk.php';
+// \core\sk::run();
 
 // 将函数注册到SPL __autoload函数队列中
 //spl_autoload_register(function ($class_name) {
