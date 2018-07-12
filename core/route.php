@@ -4,8 +4,8 @@ namespace core;
  * 路由控制
  */
 class route{
-    public $ctrl;
-    public $action;
+    public $ctrl='index';
+    public $action='index';
     public $params=array();
     public function __construct(){
         // echo 'route is ready!';
@@ -48,8 +48,8 @@ class route{
             }
         }
 
-        p($this->ctrl);
-        p($this->action);
-        p($this->params);
+        // p($this->ctrl);
+        // p($this->action);
+        // p($this->params);
     }
 }
