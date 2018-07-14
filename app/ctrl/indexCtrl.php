@@ -25,5 +25,10 @@ class indexCtrl extends \core\render{
         $this->smarty->display('index/render2.html');
     }
 
+    public function conf(){
+        // include CORE.'/conf.php';
+        $value = \core\conf::get('ACTION','route_config');
+        echo $value;
+    }
 
 }

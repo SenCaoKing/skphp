@@ -3,7 +3,7 @@ namespace core;
 
 class sk{
     public static function run(){
-        include CORE.'/function.php';
+        include CORE.'/autoload.php';
         spl_autoload_register('\core\autoload::load');
         $route = new \core\route();
 
