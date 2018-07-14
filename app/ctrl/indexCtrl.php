@@ -31,4 +31,10 @@ class indexCtrl extends \core\render{
         echo $value;
     }
 
+    public function log(){
+        $log = new \core\log();
+        $log->log('this is log','log_test');
+        echo '成功写入日志';
+    }
+
 }

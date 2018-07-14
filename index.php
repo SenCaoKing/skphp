@@ -12,6 +12,7 @@ define('APP',SKPHP.'./app'); // 应用文件目录
 define('LIB',SKPHP.'/lib'); // 第三方库所在目录
 define('PUBLIC',SKPHP.'/public'); // 静态资源目录
 define('CONFIG',SKPHP.'/config'); // 配置文件目录
+define('LOG',SKPHP.'/log'); // 日志文件目录
 
 define('DEBUG',true); // 是否开启调试
 
