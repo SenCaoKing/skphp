@@ -22,7 +22,8 @@ if(DEBUG){
     ini_set('display_errors', 'Off');
 }
 
+
+
 include CORE.'/function.php';
 include CORE.'/sk.php';
 \core\sk::run();
-
