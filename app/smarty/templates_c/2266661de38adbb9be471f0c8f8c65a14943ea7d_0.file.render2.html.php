@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-07-12 16:26:46
-  from "E:\WWW\mytest\github\skphp.\app\smarty\templates\index\render2.html" */
+/* Smarty version 3.1.32, created on 2018-07-15 11:56:31
+  from 'E:\WWW\mytest\github\skphp.\app\smarty\templates\index\render2.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.30',
-  'unifunc' => 'content_5b47814600bb79_42700756',
+  'version' => '3.1.32',
+  'unifunc' => 'content_5b4b366f01c0c2_07620426',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,9 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b47814600bb79_42700756 (Smarty_Internal_Template $_smarty_tpl) {
-?>
-<!DOCTYPE html>
+function content_5b4b366f01c0c2_07620426 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -32,7 +31,7 @@ function content_5b47814600bb79_42700756 (Smarty_Internal_Template $_smarty_tpl)
     <p>第一个Smarty页面</p>
     <p>用户名：<?php ob_start();
 echo $_smarty_tpl->tpl_vars['username']->value;
-$_prefixVariable1=ob_get_clean();
+$_prefixVariable1 = ob_get_clean();
 echo $_prefixVariable1;?>
 </p>
 </body>

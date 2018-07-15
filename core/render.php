@@ -4,8 +4,7 @@ namespace core;
 class render{
     public $smarty;
     public function __construct(){
-
-        require_once(LIB.'/smarty/libs/Smarty.class.php');
+        
         $this->smarty = new \Smarty();
 
         $this->smarty->setTemplateDir(APP.'/smarty/templates/');

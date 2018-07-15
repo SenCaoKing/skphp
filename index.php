@@ -9,7 +9,8 @@
 define('SKPHP',realpath('./')); // 获取项目所在根目录
 define('CORE',SKPHP.'/core'); // 核心文件所在目录
 define('APP',SKPHP.'./app'); // 应用文件目录
-define('LIB',SKPHP.'/lib'); // 第三方库所在目录
+define('LIB',SKPHP.'/vendor'); // 第三方库所在目录
+include LIB.'/autoload.php'; // 自动加载第三方类库
 define('PUBLIC',SKPHP.'/public'); // 静态资源目录
 define('CONFIG',SKPHP.'/config'); // 配置文件目录
 define('LOG',SKPHP.'/log'); // 日志文件目录
