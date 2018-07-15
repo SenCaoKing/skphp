@@ -37,4 +37,8 @@ class indexCtrl extends \core\render{
         echo '成功写入日志';
     }
 
+    public function medoo(){
+        $medoo = new \core\medoo();
+        dump($medoo);
+    }
 }

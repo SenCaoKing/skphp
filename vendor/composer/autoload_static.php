@@ -26,6 +26,10 @@ class ComposerStaticInit2a7055f795284ba1c80165a112510640
         array (
             'Psr\\Log\\' => 8,
         ),
+        'M' => 
+        array (
+            'Medoo\\' => 6,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -44,6 +48,10 @@ class ComposerStaticInit2a7055f795284ba1c80165a112510640
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Medoo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/catfan/medoo/src',
         ),
     );
 
