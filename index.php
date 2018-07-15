@@ -19,6 +19,9 @@ define('DEBUG',true); // 是否开启调试
 
 if(DEBUG){
     ini_set('display_errors', 'On');
+    $whoops = new \Whoops\Run;
+    $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
+    $whoops->register();
 }else{
     ini_set('display_errors', 'Off');
 }
