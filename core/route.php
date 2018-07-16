@@ -4,6 +4,7 @@ namespace core;
  * 路由控制
  */
 class route{
+    public $dir='';
     public $ctrl='index';
     public $action='index';
     public $params=array();
@@ -37,6 +38,11 @@ class route{
             if($patharr[0] == 'index.php') {
                 // 去掉 index.php
                 $patharr = array_slice($patharr,1,count($patharr) - 1);
+            }
+            $dir_path = APP.'/ctrl'.'/'.$patharr[0];
+            if(is_dir($dir_path)){
+                $this->dir = $patharr[0];
+                $patharr = array_slice($patharr,1,count($patharr)-1);
             }
             if(isset($patharr[0])){
                 $this->ctrl = $patharr[0];
