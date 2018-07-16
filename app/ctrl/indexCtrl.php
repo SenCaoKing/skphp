@@ -39,6 +39,29 @@ class indexCtrl extends \core\render{
 
     public function medoo(){
         $medoo = new \core\medoo();
-        dump($medoo);
+        // dump($medoo);
+
+        /**
+         * 增、删、改、插
+         */
+        // 查找
+        $ret = $medoo->select('user','*',['username'=>'Sen']);
+        dump($ret);
+
+        // 插入
+        $data = array(
+            'username'=>'Sen01',
+            'password'=>'Sen01'
+        );
+        $res = $medoo->insert('user',$data);
+        dump($medoo->id());
+
+        // 删除
+        $ret = $medoo->delete('user',['username'=>'Sen02']);
+        dump($ret->rowCount());
+
+        // 修改
+        $ret = $medoo->update('user',['username'=>'Sen02'],['username'=>'Sen01']);
+        dump($ret->rowCount());
     }
 }
