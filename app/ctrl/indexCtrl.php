@@ -64,4 +64,14 @@ class indexCtrl extends \core\render{
         $ret = $medoo->update('user',['username'=>'Sen02'],['username'=>'Sen01']);
         dump($ret->rowCount());
     }
+
+    public function model(){
+        $user = new \app\model\user();
+        dump($user->list_all());
+        dump($user->find_by_id(1));
+        dump($user->find_by_condition(['username'=>'Sen']));
+        dump($user->add(['username'=>'Sen03','password'=>'Sen02']));
+        dump($user->edit(['username'=>'Sen02'],['username'=>'Sen01']));
+        dump($user->del(['username'=>'Sen02']));
+    }
 }
