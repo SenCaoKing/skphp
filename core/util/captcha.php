@@ -4,7 +4,7 @@ namespace core\util;
 class captcha{
     public function get_captcha(){
         session_start();
-        $this->create(300,80,30);
+        $this->create(300,80,40);
     }
 
     public function create($width,$height,$fontsize){
@@ -37,7 +37,7 @@ class captcha{
             $x = ($i*$width/4)+rand(5,10);
             $y = rand(($height+$fontsize)/2-5,($height+$fontsize)/2+5);
             // imagestring($image,$fontsize,$x,$y,$fontcontent,$fontcolor);
-            imagettftext($image,$fontsize,rand(-10,10),$x,$y,$fontcolor,ASSETS.'/font/msyh.ttf',$fontcontent);
+            imagettftext($image,$fontsize,rand(-10,10),$x,$y,$fontcolor,ASSETS.'/font/arial.ttf',$fontcontent);
         }
         // 存到session
         $_SESSION['captcha_code'] = $captcha_code;
