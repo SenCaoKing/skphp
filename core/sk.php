@@ -11,7 +11,7 @@ class sk{
         $ctrl = $route->ctrl;
         $action = $route->action;
         $params = $route->params;
-        $params2 = $route->params2;
+        $http_get_params = $route->http_get_params;
         if($dir == ''){
             $ctrl_file = APP.'/ctrl/'.$ctrl.'Ctrl.php';
             $ctrl_class = '\\app\\ctrl\\'.$ctrl.'Ctrl';
