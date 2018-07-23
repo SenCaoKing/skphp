@@ -26,7 +26,7 @@ if(DEBUG){
     ini_set('display_errors', 'Off');
 }
 
-
+date_default_timezone_set('Asia/Shanghai');
 
 include CORE.'/function.php';
 include CORE.'/sk.php';
