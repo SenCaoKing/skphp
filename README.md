@@ -8,9 +8,9 @@
 
 3、导入skphp项目中的skphp.sql文件
 
-4、更改app/smarty/templates_c文件夹权限
+4、更改app/smarty文件夹权限
 ```
 
-cd app/smarty/
-chmod -R 777 templates_c
+cd app/
+chmod -R 777 smarty
 ```
