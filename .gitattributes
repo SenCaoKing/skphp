@@ -1,2 +1,4 @@
-assets/js/* linguist-vendored
-
+* text=auto
+*.css linguist-vendored
+*.scss linguist-vendored
+*.js linguist-vendored
