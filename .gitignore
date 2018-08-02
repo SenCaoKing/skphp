@@ -31,3 +31,6 @@ runtime/
 
 # smarty cache
 templates_c/
+
+# Frame Zip File
+skphp.rar

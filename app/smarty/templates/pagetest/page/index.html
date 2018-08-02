@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页测试</title>
+</head>
+<body>
+<table border="1" style="text-align: center;" cellpadding="0">
+    <tr>
+        <td>编号</td>
+        <td>标题</td>
+        <td>内容</td>
+        <td>发布日期</td>
+    </tr>
+    {foreach from=$result item=v}
+        <tr>
+            <td>{$v.id}</td>
+            <td>{$v.title}</td>
+            <td>{$v.content}</td>
+            <td>{$v.created_at}</td>
+        </tr>
+    {/foreach}
+</table>
+<div>
+    <a href="?pageNum=1">首页</a>
+    <a href="?pageNum={if $pageNum eq 1}1{else}{$pageNum-1}{/if}">上一页</a>
+    <a href="?pageNum={if $pageNum eq $endPage}{$endPage}{else}{$pageNum+1}{/if}">下一页</a>
+    <a href="?pageNum={$endPage}">尾页</a>
+</div>
+</body>
+</html>
