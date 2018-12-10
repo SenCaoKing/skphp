@@ -4,7 +4,9 @@ namespace app\ctrl\bookmark;
 class user_ctrl extends \core\render{
 
     public function index(){
-        echo 'user ctrl';
+        $this->smarty->assign('basepath',$this->basepath);
+        $this->smarty->assign('assets',$this->assets);
+        $this->smarty->display('bookmark/user/login.html');
     }
 
     public function captcha(){

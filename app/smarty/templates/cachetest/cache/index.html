@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>我的书签</title>
+    <link rel="stylesheet" href="{{$assets}}/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{$assets}}/css/bookmark/manage/index.css">
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">SKPHP_BOOKMARK</a>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <form action="/index.php/cachetest/cache/index">
+        <div class="container">
+            <div id="headline"><input type="text" name="title">%title%</div>
+            <div id="content"><input type="text" name="content">%content%</div>
+            <input type="submit" value="提交">
+        </div>
+    </form>
+</div>
+
+<script src="{{$assets}}/lib/jquery/jquery.min.js"></script>
+<script src="{{$assets}}/lib/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

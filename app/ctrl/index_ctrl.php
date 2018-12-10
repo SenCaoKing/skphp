@@ -4,12 +4,12 @@ include CORE.'/render.php';
 
 class index_ctrl extends \core\render{
     public function index(){
-        echo 'index ctrl';
+        $this->display('index/index.html');
     }
 
     public function data(){
         $db = new \core\db();
-        $sql = 'select *from sk_user';
+        $sql = 'select * from sk_user';
         $result = $db->query($sql);
         dump($result);
         dump($result->fetchAll());
