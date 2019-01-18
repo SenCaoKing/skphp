@@ -6,42 +6,34 @@ use think\mongo\Query;
 
 class index_ctrl extends \core\render{
     public function index(){
-        // 获取每个li里面的h3标签内容，和class为item的元素内容
+        // 采集#main下面的li里面的内容
 
         $html =<<<STR
-    <div id="demo">
-        <ul>
-
-            <li>
-              <h3>xxx</h3>
-              <div class="list">
-                <div class="item">item1</div>
-                <div class="item">item2</div>
-              </div>
-            </li>
-
-             <li>
-              <h3>xxx2</h3>
-              <div class="list">
-                <div class="item">item12</div>
-                <div class="item">item22</div>
-              </div>
-            </li>
-
-        </ul>
-    </div>
+<div id="main">
+    <ul>
+        <li>
+          <h1>这是标题1</h1>
+          <span>这是文字1<span>
+        </li>
+        <li>
+          <h1>这是标题2</h1>
+          <span>这是文字2<span>
+        </li> 
+    </ul>
+</div>
 STR;
-
+        // 方法一，不推荐(有缺陷)
         $data = QueryList::Query($html, array(
-            'title' => array('h3', 'text'),
-            'list' => array('.list', 'html')
-        ), '#demo li')->getData(function($item){
-            $item['list'] = QueryList::Query($item['list'], array(
-                'item' => array('.item', 'text')
-            ))->data;
-            return $item;
+            'title' => array('#main>ul>li>h1', 'text'),
+            'content' => array('#main>ul>li>span', 'text')
+        ))->data;
 
-        });
+        // 方法二，设置范围选择器
+        $data = QueryList::Query($html, array(
+            'list' => array('h1', 'text'),
+            'content' => array('span', 'text')
+        ), '#main>ul>li')->data;
+
         p($data);
 
         $this->display('index/index.html');
