@@ -16,6 +16,7 @@
         "smarty/smarty": "~3.1",
         "filp/whoops": "*",
         "symfony/var-dumper": "*",
-        "catfan/medoo": "*"
+        "catfan/medoo": "*",
+        "jaeger/querylist": "V3.2.1"
     }
 }
