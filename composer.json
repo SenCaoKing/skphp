@@ -17,6 +17,7 @@
         "filp/whoops": "*",
         "symfony/var-dumper": "*",
         "catfan/medoo": "*",
-        "jaeger/querylist": "V3.2.1"
+        "jaeger/querylist": "V3.2.1",
+        "guzzlehttp/guzzle": "^6.3"
     }
 }
