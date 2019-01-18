@@ -6,20 +6,26 @@ use think\mongo\Query;
 
 class index_ctrl extends \core\render{
     public function index(){
-        // 采集文章页
-        $url = 'https://www.cnbeta.com/articles/tech/779841.htm';
+        /* 采集列表页 */
+        // 待采集的页面地址
+        $url = 'https://www.cnbeta.com/';
 
         // 采集规则
         $rules = [
             // 文章标题
-            'title' => ['.title>h1', 'text'],
-            // 发布日期
-            'date' => ['.meta>span:eq(0)', 'text'],
-            // 文章内容
-            'content' => ['#artibody', 'html']
+            'title' => ['a:eq(0)', 'text'],
+            // 文章链接地址
+            'link' => ['a:eq(0)', 'href'],
+            // 文章缩略图
+            'img' => ['img:eq(0)', 'src'],
+            // 文章简介
+            'summary' => ['p:eq(0)', 'text']
         ];
 
-        $data = QueryList::Query($url, $rules)->data;
+        // 切片选择器
+        $range = '.items-area>.item';
+
+        $data = QueryList::Query($url, $rules, $range)->data;
         p($data);
 
         $this->display('index/index.html');
