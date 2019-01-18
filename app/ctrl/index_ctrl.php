@@ -6,37 +6,36 @@ use think\mongo\Query;
 
 class index_ctrl extends \core\render{
     public function index(){
-        $html = <<<STR
+        $html =<<<STR
     <div id="demo">
         xxx
-        <span class="tt">yyy</span>
-        <span>zzz</span>
-        <p>nnn</p>
+        <a href="/yyy">链接一</a>
+        <a href="/zzz">链接二</a>
     </div>
 STR;
-        // 只想获取内容:xxx
+        $baseUrl = 'http://xxx.com';
+
+        // 获取id为demo的元素下的最后一个a链接的链接和文本
+        // 并补全相对链接
+
+        // 方法一
         $data = QueryList::Query($html, array(
-            'txt' => array('#demo', 'text', '-span -p')
+            'link' => array('#demo a:last', 'href', '', function($content) use ($baseUrl){
+                return $baseUrl.$content;
+            }),
+            'name' => array('#demo a:last', 'text')
         ))->data;
-        // p($data);
 
-        // 去掉p标签，但保留p标签的内容
-        $data2 = QueryList::Query($html, array(
-            'txt' => array('#demo', 'html', 'p')
-        ))->data;
-        // p($data2);
+        // 方法二
+        $data = QueryList::Query($html, array(
+            'link' => array('#demo a:last', 'href'),
+            'name' => array('#demo a:last', 'text')
+        ))->getData(function($item) use($baseUrl){
+            $item['link'] = $baseUrl.$item['link'];
+            return $item;
+        });
 
-        // 获取纯文本，但保留p标签
-        $data3 = QueryList::Query($html, array(
-            'txt' => array('#demo', 'text', 'p')
-        ))->data;
-        // p($data3);
-
-        // 去掉class名为tt的元素和p标签，但保留p标签的内容
-        $data4 = QueryList::Query($html, array(
-            'txt' => array('#demo', 'html', '-.tt p')
-        ))->data;
-        p($data4);
+        p($data);
 
         $this->display('index/index.html');
     }
