@@ -6,27 +6,37 @@ use think\mongo\Query;
 
 class index_ctrl extends \core\render{
     public function index(){
-        /* 采集列表页 */
-        // 待采集的页面地址
-        $url = 'https://www.cnbeta.com/';
+        $html = <<<STR
+    <div id="demo">
+        xxx
+        <span class="tt">yyy</span>
+        <span>zzz</span>
+        <p>nnn</p>
+    </div>
+STR;
+        // 只想获取内容:xxx
+        $data = QueryList::Query($html, array(
+            'txt' => array('#demo', 'text', '-span -p')
+        ))->data;
+        // p($data);
 
-        // 采集规则
-        $rules = [
-            // 文章标题
-            'title' => ['a:eq(0)', 'text'],
-            // 文章链接地址
-            'link' => ['a:eq(0)', 'href'],
-            // 文章缩略图
-            'img' => ['img:eq(0)', 'src'],
-            // 文章简介
-            'summary' => ['p:eq(0)', 'text']
-        ];
+        // 去掉p标签，但保留p标签的内容
+        $data2 = QueryList::Query($html, array(
+            'txt' => array('#demo', 'html', 'p')
+        ))->data;
+        // p($data2);
 
-        // 切片选择器
-        $range = '.items-area>.item';
+        // 获取纯文本，但保留p标签
+        $data3 = QueryList::Query($html, array(
+            'txt' => array('#demo', 'text', 'p')
+        ))->data;
+        // p($data3);
 
-        $data = QueryList::Query($url, $rules, $range)->data;
-        p($data);
+        // 去掉class名为tt的元素和p标签，但保留p标签的内容
+        $data4 = QueryList::Query($html, array(
+            'txt' => array('#demo', 'html', '-.tt p')
+        ))->data;
+        p($data4);
 
         $this->display('index/index.html');
     }
