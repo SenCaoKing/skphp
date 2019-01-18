@@ -6,35 +6,42 @@ use think\mongo\Query;
 
 class index_ctrl extends \core\render{
     public function index(){
+        // 获取每个li里面的h3标签内容，和class为item的元素内容
+
         $html =<<<STR
     <div id="demo">
-        xxx
-        <a href="/yyy">链接一</a>
-        <a href="/zzz">链接二</a>
+        <ul>
+
+            <li>
+              <h3>xxx</h3>
+              <div class="list">
+                <div class="item">item1</div>
+                <div class="item">item2</div>
+              </div>
+            </li>
+
+             <li>
+              <h3>xxx2</h3>
+              <div class="list">
+                <div class="item">item12</div>
+                <div class="item">item22</div>
+              </div>
+            </li>
+
+        </ul>
     </div>
 STR;
-        $baseUrl = 'http://xxx.com';
 
-        // 获取id为demo的元素下的最后一个a链接的链接和文本
-        // 并补全相对链接
-
-        // 方法一
         $data = QueryList::Query($html, array(
-            'link' => array('#demo a:last', 'href', '', function($content) use ($baseUrl){
-                return $baseUrl.$content;
-            }),
-            'name' => array('#demo a:last', 'text')
-        ))->data;
-
-        // 方法二
-        $data = QueryList::Query($html, array(
-            'link' => array('#demo a:last', 'href'),
-            'name' => array('#demo a:last', 'text')
-        ))->getData(function($item) use($baseUrl){
-            $item['link'] = $baseUrl.$item['link'];
+            'title' => array('h3', 'text'),
+            'list' => array('.list', 'html')
+        ), '#demo li')->getData(function($item){
+            $item['list'] = QueryList::Query($item['list'], array(
+                'item' => array('.item', 'text')
+            ))->data;
             return $item;
-        });
 
+        });
         p($data);
 
         $this->display('index/index.html');
