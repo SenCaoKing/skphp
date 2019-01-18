@@ -28,7 +28,8 @@ STR;
         );
 
         $data = QueryList::Query($html, $rules)->data;
-        print_r($data);
+        p($data);
+
 
         $this->display('index/index.html');
     }
