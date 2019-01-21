@@ -2,39 +2,52 @@
 namespace app\ctrl;
 include CORE.'/render.php';
 use QL\QueryList;
-use think\mongo\Query;
+use GuzzleHttp\Client;
 
 class index_ctrl extends \core\render{
     public function index(){
-        // 采集#main下面的li里面的内容
+        // 实例化一个Http请求
+        $client = new \GuzzleHttp\Client(['base_uri' => 'https://phphub.org']);
 
-        $html =<<<STR
-<div id="main">
-    <ul>
-        <li>
-          <h1>这是标题1</h1>
-          <span>这是文字1<span>
-        </li>
-        <li>
-          <h1>这是标题2</h1>
-          <span>这是文字2<span>
-        </li> 
-    </ul>
-</div>
-STR;
-        // 方法一，不推荐(有缺陷)
-        $data = QueryList::Query($html, array(
-            'title' => array('#main>ul>li>h1', 'text'),
-            'content' => array('#main>ul>li>span', 'text')
-        ))->data;
+        $jar = new \GuzzleHttp\Cookie\CookieJar();
 
-        // 方法二，设置范围选择器
-        $data = QueryList::Query($html, array(
-            'list' => array('h1', 'text'),
-            'content' => array('span', 'text')
-        ), '#main>ul>li')->data;
+        // 发送一个Http请求
+        $response = $client->request('GET', '/categories/6', [
+            'headers' => [
+                'User-Agent' => 'testing/1.0',
+                'Accept'     => 'application/json',
+                'X-Foo'      => ['Bar', 'Baz']
+            ],
+            'from-params' => [
+                'foo' => 'bar',
+                'baz' => ['hi', 'there!']
+            ],
+            // 'cookies' => $jar,
+            'timeout' => 3.14,
+            // 'proxy'   => 'tcp://localhost:9650',
+            // 'cert'    => ['/path/server.pem', 'password'],
+        ]);
 
-        p($data);
+        $body = $response->getBody();
+
+        // 获取到页面源码
+        $html = (string)$body;
+
+        // 采集规则
+        $rules = array(
+            // 文章标题
+            'title'  => ['.media-heading a', 'text'],
+            // 文章链接
+            'link'   => ['.media-heading a', 'href'],
+            // 文章作者名
+            'author' => ['.img-thumbnail', 'alt']
+        );
+        // 列表选择器
+        $rang = '.topic-list>li';
+        // 采集
+        $data = QueryList::Query($html, $rules, $rang)->data;
+        // 查看采集结果
+        var_dump($data);
 
         $this->display('index/index.html');
     }
